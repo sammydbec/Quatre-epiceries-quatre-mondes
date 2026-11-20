@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="fr" class="locked">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#ff4500">
+    <title>QUATRE ÉPICERIES QUATRE MONDES</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23FF3300'/></svg>">
+    <!--GOOGLE FONT -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilex:wght@400;700&display=swap" rel="stylesheet">
+    <!--JAVASCRIPT -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+      <!--CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="locked">
+<div id="overlay-entrer">
+    <div class="overlay-content">
+        <button id="btn-entrer">ENTRER</button>
+        <p class="overlay-hint">Active le son</p>
+    </div>
+</div>
+
+<!-- Le moteur audio est créé en JavaScript (voir plus bas) -->
+
+<!-- BARRE DU HAUT -->
+<div id="progress-top" class="progress-container">
+    <div id="bar-top" class="progress-bar"></div>
+    <div class="progress-dots"></div>
+</div>
+
+<!-- BARRE DU BAS -->
+<div id="progress-bottom" class="progress-container bottom">
+    <div id="bar-bottom" class="progress-bar"></div>
+    <div class="progress-dots"></div>
+</div>
+
+<nav id="nav-tag" class="receipt-menu">
+    <div class="nav-header">PARCOURS</div>
+    <div class="receipt-content">
+        <ul id="menu">
+            <li data-target="experience">0 @ L'EXPÉRIENCE</li>
+            <li data-target="milano">1 @ MILANO</li>
+            <li data-target="sabor">2 @ SABOR LATINO</li>
+            <li data-target="kimphat">3 @ KIM PHAT</li>
+            <li data-target="amira">4 @ MAGASIN AMIRA</li>
+            <li data-target="conclusion">5 @ APPRENTISSAGES</li>
+        </ul>
+        <div class="receipt-footer"></div>
+    </div>
+</nav>
+
+<!-- SCROLL VERTICAL -->
+<div class="vertical-wrapper">
+    <section id="intro" class="section-intro">
+            <div class="dot" style="top: 20%; left: 5%;"></div>
+            <div class="dot" style="bottom: 15%; right: 20%;"></div>
+            <div class="dot" style="bottom: 55%; right: 0%;"></div>
+            <div class="dot" style="bottom: 90%; right: 90%;"></div>
+            <div class="dot" style="bottom: 0%; right: 0%;"></div>
+            <div class="dot" style="bottom: -10%; right: 40%;"></div>
+            <div class="dot" style="bottom: 40%; right: 60%;"></div>
+            <div class="dot" style="bottom: -5%; right: 70%;"></div>
+            <div class="dot" style="bottom: 15%; right: 90%;"></div>
+            <div class="dot" style="bottom: 95%; right: 10%;"></div>
+            <div class="dot" style="bottom: 80%; right: 50%;"></div>
+            <div class="dot" style="bottom: 55%; right: 30%;"></div>
+
+            <div class="img-wrap" style="width: 18vw; top: 10%; left: 25%;"><img src="images/italie1.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 14vw; top: 10%; left: 50%;"><img src="images/saborlatino_receipt.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 25vw; top: 50%; left: 17%;"><img src="images/italie2.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 15vw; bottom: -20%; left: 20%;"><img src="images/italie3.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 22vw; top: 15%; left: 65%;"><img src="images/egypt1.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 15vw; top: 5%; left: 5%;"><img src="images/kimphat_receipt.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 20vw; top: 30%; left: 40%;"><img src="images/home.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 16vw; bottom: 10%; left: 59%;"><img src="images/italie6.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 12vw; top: 50%; left: 61%;"><img src="images/milano_receipt.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 15vw; top: 50%; left: 85%;"><img src="images/milano1.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 10vw; top: 60%; left: 75%;"><img src="images/milano2.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 12vw; top: 78%; left: 37%;"><img src="images/amira_receipt.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 20vw; top: 90%; left: 77%;"><img src="images/sudamerique.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 20vw; top: 120%; left: 77%;"><img src="images/vietnam1.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 20vw; top: 150%; left: 5%;"><img src="images/milano14.jpg" alt=""></div>
+    </section>
+
+    <section id="experience" class="section-experience">
+        <div class="text-experience">
+             <div class="dot" style="top: 20%; left: 5%;"></div>
+            <div class="dot" style="bottom: 15%; right: 20%;"></div>
+            <div class="dot" style="bottom: 55%; right: 0%;"></div>
+            <div class="dot" style="bottom: 0%; right: 0%;"></div>
+            <div class="dot" style="bottom: -10%; right: 40%;"></div>
+            <div class="dot" style="bottom: 35%; right: 75%;"></div>
+            <div class="dot" style="bottom: -5%; right: 70%;"></div>
+            <div class="dot" style="bottom: 15%; right: 90%;"></div>
+            <div class="dot" style="bottom: 55%; right: 30%;"></div>
+
+            <h1>*QUATRE ÉPICERIES* <br> *QUATRE MONDES*</h1>
+            <p class="credit">
+                Par Samantha Becerra <br>Réalise dans le cadre du cours Typographie et éditions par Sophie Auger. <br>École de design à l'UQAM, session d'Hiver 2025.</p>
+            <p>Pendant plusieurs jours, j’ai visité quatre épiceries ethniques, tenues par des gens de la diaspora montréalaise.</p>
+            <p>Avec juste mon appareil photo et mon cellulaire, j’ai regardé, écouté, pris des notes.</p>
+            <p>Je t’emmène avec moi revivre ce que j’y ai senti, vu et ressenti.</p>
+        </div>
+    </section>
+</div>
+
+
+<!--SCROLL HORIZONTAL -->
+<div class="horizontal-outer">
+    <div class="horizontal-wrapper">
+        <section id="milano" class="section-milano">
+            <div class="header-groupe">
+                <h2 class="epicerie-title">FRUITERIE MILANO</h2>
+                <h3 class="epicerie-adresse">622 Boul. St-Laurent <br>Montreal, QC H4S 3C7</h3>
+            </div>
+            <div class="img-wrap" style="width: 25vw; top: 40%; left: 5%;"><img src="images/italie3.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 16vw; bottom: 10%; left: 75%;"><img src="images/italie5.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 15vw; top: 30%; left: 65%;"><img src="images/milano11.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 17vw; top: 60%; left: 25%;"><img src="images/milano17.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 20vw; top: 75%; left: 56%;"><img src="images/milano16.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 12vw; top: 80%; left: 15%;"><img src="images/milano15.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 20vw; top: 50%; left: 40%;"><img src="images/milano14.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 14vw; top: 30%; left: 25%;"><img src="images/milano13.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 14vw; top: 50%; left: 80%;"><img src="images/milano9.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 22vw; top: 80%; left: 30%;"><img src="images/milano8.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 20vw; top: 30%; left: 75%;"><img src="images/milano7.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 20vw; top: 35%; left: 42%;"><img src="images/milano2.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 25vw; top: 80%; left: 70%;"><img src="images/milano5.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 13vw; top: 80%; left: 0%;"><img src="images/milano12.jpg" alt=""></div>
+        </section>
+
+        <section id="sabor" class="section-sabor">
+            <div class="header-groupe">
+                <h2 class="epicerie-title">SABOR LATINO ST-LAURENT</h2>
+                <h3 class="epicerie-adresse">4387 BOUL. ST-LAURENT <br>MONTRÉAL, QC H2W 1Z8</h3>
+            </div>
+            <div class="img-wrap" style="width: 20vw; top: 30%; left: 16%;"><img src="images/saborlatino1.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 28vw; top: 80%; left: 30%;"><img src="images/saborlatino2.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 20vw; top: 35%; left: 40%;"><img src="images/saborlatino3.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 22vw; top: 60%; left: 75%;"><img src="images/saborlatino4.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 15vw; top: 90%; left: 3%;"><img src="images/saborlatino5.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 19vw; top: 30%; left: 65%;"><img src="images/saborlatino6.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 18vw; top: 50%; left: 55%;"><img src="images/saborlatino7.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 14vw; top: 80%; left: 65%;"><img src="images/saborlatino8.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 18vw; top: 60%; left: 30%;"><img src="images/saborlatino9.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 20vw; top: 35%; left: 0%;"><img src="images/saborlatino12.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 15vw; top: 70%; left: 5%;"><img src="images/saborlatino10.jpg" alt=""></div>
+        </section>
+
+        <section id="kimphat" class="section-kimphat">
+            <div class="header-groupe">
+                <h2 class="epicerie-title">KIM PHAT MARCHÉ D'ASIE</h2>
+                <h3 class="epicerie-adresse">1935 Boul. Keller <br>Ville Saint-Laurent, Qc H4K 2V6</h3>
+            </div>
+            <div class="img-wrap" style="width: 15vw; bottom: 20%; left: 5%;"><img src="images/kimphat1.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 25vw; bottom: 30%; left: 10%;"><img src="images/kimphat2.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 20vw; bottom: 20%; left: 55%;"><img src="images/kimphat3.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 18vw; bottom: 10%; left: 80%;"><img src="images/kimphat4.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 10vw; bottom: 40%; left: 50%;"><img src="images/kimphat5.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 10vw; bottom: 0%; left: 70%;"><img src="images/kimphat6.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 16vw; bottom: 20%; left: 55%;"><img src="images/kimphat7.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 12vw; bottom: 0%; left: 25%;"><img src="images/kimphat8.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 16vw; bottom: 15%; left: 35%;"><img src="images/kimphat9.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 16vw; bottom: 30%; left: 15%;"><img src="images/kimphat10.jpg" alt=""></div>
+        </section>
+
+        <section id="amira" class="section-amira">
+            <div class="header-groupe">
+                <h2 class="epicerie-title"><span style="text-transform: none;">Magasin Amira</span></h2>
+                <h3 class="epicerie-adresse">1445 RUE MAZURETTE <br>MONTREAL<br>QC<br>H4N1G8</h3>
+            </div>
+            <div class="img-wrap" style="width: 20vw; top: 35%; left: 5%;"><img src="images/amira1.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 15vw; top: 45%; left: 30%;"><img src="images/amira2.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 12vw; top: 80%; left: 82%;"><img src="images/amira3.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 18vw; top: 50%; left: 80%;"><img src="images/amira4.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 20vw; top: 30%; left: 60%;"><img src="images/amira5.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 15vw; top: 60%; left: 45%;"><img src="images/amira6.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 16vw; top: 70%; left: 20%;"><img src="images/amira7.jpg" alt=""></div>
+        </section>
+
+        <section id="conclusion" class="section-conclusion">
+            <div class="header-groupe">
+                <h2>Ce que <br>j'ai appris</h2>
+            </div>
+            <div class="img-wrap" style="width: 12vw; top: -20%; left: 20%;"><img src="images/scan1.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 12vw; top: 80%; left: 82%;"><img src="images/scan2.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 18vw; top: 5%; left: 0%;"><img src="images/scan3.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 18vw; top: 75%; left: 50%;"><img src="images/scan4.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 18vw; top: 80%; left: 20%;"><img src="images/scan5.jpg" alt=""></div>
+            <div class="img-wrap" style="width: 18vw; top: 10%; left: 80%;"><img src="images/scan6.jpg" alt=""></div>
+
+            <div class="text-experience">
+                <p>Chacune de ces épiceries m'a fait sentir comme être chez eux, dans leur pays. Derrière chaque étagère, il y a une communauté, une certaine nostalgie, un langage partagé qui tisse des liens invisibles.</p>
+                <p>En lisant des entrevues et parlant avec des employés, j'ai vu la résilience de ceux qui ont tout quitté pour recommencer ailleurs.</p>
+                <p>Imprimer ma publication avec une petite imprimante thermique a rendu le processus de création plus immersif. </p>
+            </div>
+        </section>
+    </div>
+</div>
+
+<div id="keyboard-hint">
+    <span class="key-btn"></span>← CLAVIER →<span class="key-btn"></span>
+</div>
+
+<script>
+    // 1. PLUGINS
+    gsap.registerPlugin(ScrollTrigger, Draggable, ScrollToPlugin);
+    // Évite les recalculs à chaque fois que la barre d'adresse mobile apparaît/disparaît
+    ScrollTrigger.config({ ignoreMobileResize: true });
+
+    // 2. ÉLÉMENTS & DÉTECTION DE L'APPAREIL
+    const horizontalSections = document.querySelector(".horizontal-wrapper");
+    const barTop = document.querySelector("#bar-top");
+    const barBottom = document.querySelector("#bar-bottom");
+    const keyboardHint = document.querySelector("#keyboard-hint");
+    const navTag = document.querySelector("#nav-tag");
+
+    const narrowMQ = window.matchMedia("(max-width: 768px)");
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+
+    // 3. IMAGES : taille adaptée aux petits écrans
+    // Les largeurs d'origine (en vw) sont gardées en mémoire, puis agrandies sur mobile
+    // et ramenées dans les limites de leur section.
+    const imgWraps = document.querySelectorAll(".img-wrap");
+    imgWraps.forEach(el => {
+        el.dataset.w = parseFloat(el.style.width);
+        el.dataset.l = parseFloat(el.style.left);
+    });
+
+    function layoutImages(refresh) {
+        const narrow = narrowMQ.matches;
+        imgWraps.forEach(el => {
+            const w = parseFloat(el.dataset.w);
+            const l = parseFloat(el.dataset.l);
+            if (!narrow) {
+                el.style.width = w + "vw";
+                if (!isNaN(l)) el.style.left = l + "%";
+                return;
+            }
+            const nw = Math.min(42, Math.max(26, w * 1.7));
+            el.style.width = nw + "vw";
+            if (!isNaN(l)) {
+                const secVW = (el.parentElement.offsetWidth / window.innerWidth) * 100;
+                const maxLeft = ((secVW - nw) / secVW) * 100;
+                el.style.left = Math.max(0, Math.min(l, maxLeft)) + "%";
+            }
+        });
+        if (refresh) ScrollTrigger.refresh();
+    }
+    layoutImages(false);
+    narrowMQ.addEventListener("change", () => layoutImages(true));
+
+    // 4. MOTEUR AUDIO (compatible iOS / Android / desktop)
+    // - Deux ou trois lecteurs créés en JS, « débloqués » au tap sur ENTRER
+    //   (iOS n'autorise le son qu'après un geste de l'utilisateur).
+    // - Fondu enchaîné entre les pistes. Sur iOS, audio.volume est ignoré :
+    //   on passe alors par Web Audio (GainNode).
+    const TRACKS = {
+        "snd-intro":      "audio/kimphat.mp3",
+        "snd-experience": "audio/amira2.mp3",
+        "snd-milano":     "audio/milano.mp3",
+        "snd-sabor":      "audio/saborlatino.mp3",
+        "snd-kimphat":    "audio/kimphat2.mp3",
+        "snd-amira":      "audio/amira1.mp3",
+        "snd-conclusion": "audio/amira2.mp3"
+    };
+
+    const pool = [0, 1, 2].map(() => {
+        const el = new Audio();
+        el.loop = true;
+        el.preload = "auto";
+        return { el, level: 0, gain: null, track: null };
+    });
+
+    const probe = new Audio();
+    probe.volume = 0.5;
+    const volumeWorks = probe.volume === 0.5;   // faux sur iOS
+
+    let audioCtx = null;
+    let audioReady = false;
+    let current = null;
+    let currentKey = null;
+
+    function applyLevel(p) {
+        if (p.gain) p.gain.gain.value = p.level;
+        else p.el.volume = Math.max(0, Math.min(1, p.level));
+    }
+
+    function fade(p, to, duration, done) {
+        gsap.killTweensOf(p);
+        gsap.to(p, {
+            level: to, duration, ease: "none",
+            onUpdate: () => applyLevel(p),
+            onComplete: () => { applyLevel(p); if (done) done(); }
+        });
+    }
+
+    function playSectionSound(key) {
+        if (!audioReady || key === currentKey || !TRACKS[key]) return;
+
+        // Même musique (ex. expérience → conclusion) : on ne relance rien
+        if (current && current.track === TRACKS[key]) { currentKey = key; return; }
+
+        const prev = current, prevKey = currentKey;
+        const next = pool.filter(p => p !== prev).sort((a, b) => a.level - b.level)[0];
+
+        gsap.killTweensOf(next);
+        next.level = 0;
+        applyLevel(next);
+        next.el.src = TRACKS[key];
+        next.track = TRACKS[key];
+
+        current = next;
+        currentKey = key;
+
+        if (prev) fade(prev, 0, 2, () => { if (current !== prev) prev.el.pause(); });
+
+        next.el.play().then(() => fade(next, 1, 2.5)).catch(() => {
+            // lecture refusée : on revient à l'état précédent
+            current = prev; currentKey = prevKey;
+            if (prev) fade(prev, 1, 1);
+        });
+    }
+
+    // Appelé au tap sur ENTRER (geste utilisateur obligatoire)
+    function initAudio() {
+        if (audioReady) return;
+        audioReady = true;
+
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (!volumeWorks && AC) audioCtx = new AC();
+
+        pool.forEach(p => {
+            if (audioCtx) {
+                const source = audioCtx.createMediaElementSource(p.el);
+                p.gain = audioCtx.createGain();
+                p.gain.gain.value = 0;
+                source.connect(p.gain);
+                p.gain.connect(audioCtx.destination);
+            } else {
+                p.el.volume = 0;
+            }
+        });
+        if (audioCtx) audioCtx.resume();
+
+        // « Débloque » les lecteurs de réserve pendant le geste
+        pool.slice(1).forEach(p => {
+            p.el.src = TRACKS["snd-intro"];
+            p.el.play().then(() => p.el.pause()).catch(() => {});
+        });
+
+        playSectionSound("snd-intro");
+    }
+
+    // Pause quand l'onglet/l'app passe en arrière-plan, reprise au retour
+    document.addEventListener("visibilitychange", () => {
+        if (!audioReady || !current) return;
+        if (document.hidden) {
+            current.el.pause();
+        } else {
+            if (audioCtx) audioCtx.resume();
+            current.el.play().catch(() => {});
+        }
+    });
+
+    // 5. ANIMATION FADE-IN : ZONE VERTICALE (Expérience)
+    gsap.to("#experience .credit, #experience h1, #experience p", {
+        opacity: 1, y: 0, duration: 1.2, stagger: 0.2, ease: "power3.out",
+        scrollTrigger: {
+            trigger: "#experience",
+            start: "top 75%",
+            toggleActions: "play none none reverse"
+        }
+    });
+
+    // Déclencheur audio : Expérience
+    ScrollTrigger.create({
+        trigger: "#experience",
+        start: "top center",
+        onEnter: () => playSectionSound("snd-experience"),
+        onEnterBack: () => playSectionSound("snd-experience")
+    });
+
+    // 6. SCROLL HORIZONTAL (SCROLL-JACKING) — le glissement vertical du doigt fait avancer la page
+    let mainScroll = gsap.to(horizontalSections, {
+        x: () => -(horizontalSections.scrollWidth - window.innerWidth),
+        ease: "none",
+        scrollTrigger: {
+            id: "mainScroll",
+            trigger: ".horizontal-outer",
+            start: "top top",
+            end: () => "+=" + (horizontalSections.scrollWidth - window.innerWidth),
+            pin: true,
+            anticipatePin: 1,
+            scrub: 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+                const progression = (self.progress * 100).toFixed(2) + "%";
+                if (barTop) barTop.style.width = progression;
+                if (barBottom) barBottom.style.width = progression;
+            }
+        }
+    });
+
+    // 7. ANIMATION FADE-IN : ZONE HORIZONTALE (Titres & Adresses)
+    gsap.utils.toArray(".header-groupe, .section-conclusion h2, .section-conclusion p").forEach(el => {
+        gsap.to(el, {
+            opacity: 1, y: 0, duration: 1, ease: "power2.out",
+            scrollTrigger: {
+                trigger: el,
+                containerAnimation: mainScroll,
+                start: "left 85%",
+                toggleActions: "play none none reverse"
+            }
+        });
+    });
+
+    // 8. AUDIO : ÉPICERIES (ZONE HORIZONTALE)
+    const stores = [
+        { id: "#milano", snd: "snd-milano" },
+        { id: "#sabor", snd: "snd-sabor" },
+        { id: "#kimphat", snd: "snd-kimphat" },
+        { id: "#amira", snd: "snd-amira" },
+        { id: "#conclusion", snd: "snd-experience" } // Réutilise le son expérience pour la fin
+    ];
+
+    stores.forEach(store => {
+        ScrollTrigger.create({
+            trigger: store.id,
+            containerAnimation: mainScroll,
+            start: "left center",
+            onEnter: () => playSectionSound(store.snd),
+            onEnterBack: () => playSectionSound(store.snd)
+        });
+    });
+
+    // 9. INDICE CLAVIER (masqué automatiquement sur écrans tactiles via le CSS)
+    ScrollTrigger.create({
+        trigger: "#milano", endTrigger: "#sabor", containerAnimation: mainScroll,
+        start: "left 80%", end: "left 20%",
+        onToggle: self => gsap.to(keyboardHint, { opacity: self.isActive ? 1 : 0, duration: 0.5 })
+    });
+    ScrollTrigger.create({
+        trigger: "#conclusion", containerAnimation: mainScroll, start: "left 80%",
+        onEnter: () => gsap.to(keyboardHint, { opacity: 1, duration: 0.5 }),
+        onLeaveBack: () => gsap.to(keyboardHint, { opacity: 0, duration: 0.5 })
+    });
+
+    // 10. NAVIGATION DU MENU
+    document.querySelectorAll("#menu li").forEach((li) => {
+        li.addEventListener("click", () => {
+            const targetId = li.getAttribute("data-target");
+            const targetElement = document.getElementById(targetId);
+            if (!targetElement) return;
+
+            if (!horizontalSections.contains(targetElement)) {
+                gsap.to(window, { duration: 1.5, scrollTo: { y: targetElement }, ease: "power2.inOut" });
+            } else {
+                const st = ScrollTrigger.getById("mainScroll");
+                const targetPos = st.start + targetElement.offsetLeft;
+                gsap.to(window, { duration: 2, scrollTo: { y: targetPos }, ease: "power2.inOut" });
+            }
+            navTag.classList.remove("active");   // referme le menu après un tap
+        });
+    });
+
+    // 11. NAVIGATION AU CLAVIER (desktop)
+    window.addEventListener("keydown", (e) => {
+        const scrollStep = 300;
+        if (e.key === "ArrowRight") window.scrollBy({ top: scrollStep, behavior: "auto" });
+        if (e.key === "ArrowLeft") window.scrollBy({ top: -scrollStep, behavior: "auto" });
+    });
+
+    // 12. INTERACTIONS OBJETS (DRAGGABLE & DOUBLE-CLIC / DOUBLE-TAP)
+    // Sur écran tactile : déplacement horizontal seulement, pour que le glissement
+    // vertical du doigt continue de faire défiler la page, même en touchant une image.
+    function removeItem(el) {
+        gsap.to(el, {
+            opacity: 0, scale: 0, duration: 0.6, ease: "power2.inOut",
+            onComplete: () => { el.style.display = "none"; }
+        });
+    }
+
+    window.addEventListener("load", function () {
+        Draggable.create(".dot, .img-wrap", {
+            type: isTouch ? "x" : "x,y",
+            edgeResistance: 0.5,
+            onPress: function () { gsap.set(this.target, { zIndex: 1000 }); },
+            onClick: function () {
+                const t = this.target;
+                const now = Date.now();
+                if (now - (t._lastTap || 0) < 350) removeItem(t);   // double clic ou double tap
+                t._lastTap = now;
+            }
+        });
+    });
+
+    // 13. MENU MOBILE : un tap sur « PARCOURS » ouvre/ferme, un tap ailleurs referme
+    navTag.addEventListener("click", (e) => {
+        if (e.target.closest(".nav-header")) navTag.classList.toggle("active");
+    });
+    document.addEventListener("click", (e) => {
+        if (!navTag.contains(e.target)) navTag.classList.remove("active");
+    });
+
+    // 14. ÉCRAN ENTRER
+    const overlay = document.querySelector("#overlay-entrer");
+    const btnEntrer = document.querySelector("#btn-entrer");
+
+    btnEntrer.addEventListener("click", () => {
+        initAudio();   // doit être appelé directement dans le geste de l'utilisateur
+
+        document.documentElement.classList.remove("locked");
+        document.body.classList.remove("locked");
+        ScrollTrigger.refresh();
+
+        gsap.to(overlay, {
+            opacity: 0,
+            duration: 1,
+            onComplete: () => overlay.remove()
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,542 @@
+/* --- VARIABLES DE DESIGN --- */
+:root {
+    --encre: #1A1A1A;
+    --recu: #f0ece7;
+    --liquidation: #ff4500;
+    --rabais: #FEF250;
+    --promotion: #FF6EC7;
+    --affiche: #00BFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    font-family: 'Lilex', monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--encre);
+    overflow-x: hidden;
+}
+
+/* Bloque le défilement tant que l'écran ENTRER est visible */
+html.locked,
+body.locked {
+    overflow: hidden;
+    height: 100%;
+}
+
+.lilex {
+    font-family: "Lilex", monospace;
+    font-optical-sizing: auto;
+    font-weight: 100;
+}
+
+
+/* --- MENU REÇU --- */
+#nav-tag {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    background: var(--recu);
+    color: var(--encre);
+    padding: 15px;
+    border: 0.5px solid var(--encre);
+    mix-blend-mode: hard-light;
+    width: 180px;
+    max-height: 55px;
+    overflow: hidden;
+}
+
+#nav-tag.active {
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: rotate(0deg);
+}
+
+.nav-header {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.05em;
+    border-bottom: 1px dashed #000;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.receipt-content { opacity: 0; transition: opacity 0.5s ease; }
+#nav-tag.active .receipt-content { opacity: 1; color: var(--encre); }
+
+#menu { list-style: none; margin-bottom: 20px; }
+#menu li { font-size: 0.8rem; padding: 6px 0; cursor: pointer; transition: 0.2s; }
+
+/* Les effets de survol ne s'appliquent qu'aux appareils avec une vraie souris
+   (sinon le survol « colle » après un tap sur mobile) */
+@media (hover: hover) {
+    #nav-tag:hover {
+        max-height: 80vh;
+        overflow-y: auto;
+        transform: rotate(0deg);
+    }
+    #nav-tag:hover .receipt-content { opacity: 1; color: var(--encre); }
+    #menu li:hover { font-weight: 700; color: var(--encre); }
+}
+
+
+/* --- STRUCTURES --- */
+.horizontal-outer {
+    overflow: hidden;
+    width: 100%;
+}
+
+.horizontal-wrapper {
+    display: flex;
+    width: fit-content;
+}
+
+.vertical-wrapper {
+    width: 100%;
+    overflow-x: clip;
+}
+
+section {
+    width: 100vw;
+    height: 100vh;
+    height: 100svh; /* hauteur stable : ignore la barre d'adresse mobile */
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 10vw;
+}
+
+/* --- SECTIONS --- */
+.section-intro { background-color: var(--recu); flex-direction: column; justify-content: center; }
+.section-experience { background-color: var(--recu); color: var(--encre); justify-content: center; mix-blend-mode: lighten; text-align: left; }
+.section-milano { background-color: var(--affiche); }
+.section-sabor { background-color: var(--rabais); }
+.section-kimphat { background-color: var(--promotion); }
+.section-amira { background-color: var(--liquidation); }
+.section-conclusion { background-color: var(--recu); }
+
+.section-experience h1 {
+    margin-bottom: 20px;
+    margin-top: 100px;
+}
+.section-experience {
+    padding: 15px;
+    font-size: 0.75em;
+}
+
+
+h1 {
+    font-size: 3.5vw;
+    color: var(--encre);
+    text-transform: uppercase;
+    line-height: 1;
+    z-index: 10;
+    font-weight: 100;
+    text-align: center;
+}
+
+p {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+.text-experience {
+    max-width: 600px;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    z-index: 10;
+}
+
+/* --- FADE IN EFFECT --- */
+.section-experience h1,
+.section-experience p,
+.epicerie-title,
+.epicerie-adresse,
+.section-conclusion h2,
+.section-conclusion p {
+    opacity: 0;
+    transform: translateY(40px);
+    will-change: transform, opacity;
+}
+
+/* --- POSITIONNEMENT DES TITRES SCROLL HORIZONTAL --- */
+.section-conclusion h2 {
+    position: absolute;
+    top: 8vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    text-align: center;
+    padding: 0;
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: var(--encre);
+    text-transform: uppercase;
+    line-height: 1;
+    z-index: 20;
+    pointer-events: none;
+    font-weight: 100;
+    margin-bottom: 1.5vh;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.section-conclusion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-conclusion .text-experience {
+    margin-top: 10vh;
+}
+
+/* --- IMAGES --- */
+.img-wrap {
+    position: absolute;
+    z-index: 5;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    mix-blend-mode: multiply;
+}
+.img-wrap img {
+    width: 100%;
+    display: block;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none; /* pas de menu « enregistrer l'image » au toucher long */
+}
+
+/* --- IMAGE ET DOT --- */
+.dot, .img-wrap {
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: grab;
+}
+.dot:active, .img-wrap:active {
+    cursor: grabbing;
+}
+
+@media (hover: hover) {
+    .dot:hover, .img-wrap:hover {
+        filter: brightness(1.2);
+        outline: 1px dashed rgba(0,0,0,0.2);
+    }
+}
+
+/* --- DOTS --- */
+.dot {
+    position: absolute;
+    z-index: 1;
+    background: var(--liquidation);
+    border-radius: 50%;
+    mix-blend-mode: multiply;
+    width: clamp(60px, 12vw, 180px);
+    height: clamp(60px, 12vw, 180px);
+    aspect-ratio: 1 / 1;
+    /* On anime la propriété « translate » (et non « transform ») pour
+       ne pas écraser le déplacement de Draggable */
+    animation: idleFloat 5s ease-in-out infinite;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    cursor: pointer;
+}
+
+@keyframes idleFloat {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -20px; }
+}
+
+@media (hover: hover) {
+    .dot:hover {
+        opacity: 0;
+        transform: scale(0.1);
+    }
+}
+
+.receipt-footer {
+    border-bottom: 1px dashed var(--encre);
+}
+
+/* --- BARRE DE PROGRESSION DOT --- */
+.progress-container {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    z-index: 9999;
+    pointer-events: none;
+    background: transparent;
+}
+
+#progress-top { top: 0; }
+#progress-bottom { bottom: 0; }
+
+.progress-dots {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transform: translateY(-50%);
+    background-image: linear-gradient(to right, rgba(0,0,0,0.15) 20%, transparent 0%);
+    background-size: 10px 2px;
+    background-repeat: repeat-x;
+}
+.progress-bar {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    transform: translateY(-50%);
+    background-image: linear-gradient(to right, var(--encre) 20%, transparent 0%);
+    background-size: 10px 2px;
+    background-repeat: repeat-x;
+    border-right: 2px solid var(--liquidation);
+    z-index: 2;
+}
+
+/* --- BOUTON CLAVIER SCROLL --- */
+#keyboard-hint {
+    position: fixed;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-500%);
+    z-index: 9000;
+    color: var(--encre);
+    padding: 8px 15px;
+    border: 0.5px solid var(--encre);
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    mix-blend-mode: multiply;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.credit {
+    text-align: center;
+    font-size: 0.7rem;
+    font-style: italic;
+    font-weight: 100;
+    line-height: 1.5;
+    color: var(--encre);
+    opacity: 0;
+    margin-bottom: 25px;
+    letter-spacing: 0.02em;
+}
+
+
+/* --- LE CONTENEUR GLOBAL DU TITRE ET DE L'ADRESSE --- */
+.header-groupe {
+    position: absolute;
+    top: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+/* --- LE TITRE (H2) --- */
+.epicerie-title {
+    position: relative;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 200;
+    color: var(--encre);
+    text-transform: uppercase;
+    line-height: 1;
+    margin: 0;
+    margin-bottom: 20px;
+    white-space: normal;
+    word-wrap: break-word;
+    opacity: 1;
+}
+
+/* --- L'ADRESSE (H3) --- */
+.epicerie-adresse {
+    position: relative;
+    font-size: clamp(0.7rem, 1.5vw, 1.1rem);
+    font-weight: 400;
+    color: var(--encre);
+    text-transform: uppercase;
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    opacity: 0.8;
+    margin: 0;
+}
+
+/* --- ÉCRAN D'ENTRÉE --- */
+#overlay-entrer {
+    position: fixed;
+    inset: 0;
+    background-color: var(--liquidation);
+    z-index: 20000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: opacity 1s ease;
+}
+
+.overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.overlay-hint {
+    margin: 0;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--recu);
+}
+
+#btn-entrer {
+    background: var(--recu);
+    color: var(--liquidation);
+    border: none;
+    width: clamp(60px, 12vw, 150px);
+    height: clamp(60px, 12vw, 150px);
+    padding: 20px 40px;
+    border-radius: 50%;
+    font-family: 'Lilex', monospace;
+    font-weight: 500;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+@media (hover: hover) {
+    #btn-entrer:hover {
+        transform: translate(-2px, -2px);
+    }
+}
+
+
+/* ============================================================
+   APPAREILS TACTILES : pas d'indice « clavier »,
+   le défilement vertical natif doit passer à travers les images
+   ============================================================ */
+@media (hover: none) {
+    #keyboard-hint { display: none; }
+}
+
+@media (pointer: coarse) {
+    .img-wrap, .dot { touch-action: pan-y; }
+}
+
+
+/* ============================================================
+   MOBILE (écrans étroits)
+   ============================================================ */
+@media (max-width: 768px) {
+
+    /* Barres de progression : respecter l'encoche et la barre d'accueil iOS */
+    #progress-top { top: env(safe-area-inset-top, 0px); }
+    #progress-bottom { bottom: env(safe-area-inset-bottom, 0px); }
+
+    /* Menu reçu */
+    #nav-tag {
+        width: 168px;
+        top: calc(env(safe-area-inset-top, 0px) + 14px);
+        right: 10px;
+        padding: 10px;
+    }
+    .nav-header { font-size: 0.7rem; }
+    #menu li { font-size: 0.7rem; padding: 10px 0; }  /* cibles tactiles plus grandes */
+
+    /* Sections */
+    section { padding: 0 6vw; }
+
+    /* Les sections des épiceries sont plus larges que l'écran :
+       les photos s'étalent comme sur desktop au lieu de s'empiler */
+    .section-milano,
+    .section-sabor,
+    .section-kimphat,
+    .section-amira { width: 190vw; }
+
+    .section-conclusion { width: 100vw; }
+
+    /* Texte d'introduction */
+    h1 { font-size: 6.8vw; line-height: 1.1; }
+    .section-experience { padding: 15px 18px; }
+    .section-experience h1 { margin-top: 60px; margin-bottom: 16px; }
+    .text-experience {
+        font-size: 1rem;
+        line-height: 1.5;
+        max-width: 100%;
+    }
+    p { font-size: 0.85rem; }
+    .credit { font-size: 0.65rem; }
+
+    /* Titres des épiceries : calés sur la zone visible au début de la section */
+    .header-groupe {
+        top: calc(env(safe-area-inset-top, 0px) + 12svh);
+        left: 5vw;
+        width: 90vw;
+        max-width: none;
+        transform: none;
+    }
+    .epicerie-title {
+        font-size: clamp(1.7rem, 9vw, 3rem);
+        margin-bottom: 10px;
+    }
+    .epicerie-adresse {
+        font-size: 0.68rem;
+        letter-spacing: 0.06em;
+    }
+
+    /* Conclusion */
+    .section-conclusion h2 {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        font-size: clamp(1.8rem, 9vw, 3rem);
+    }
+    .section-conclusion .text-experience { margin-top: 6svh; }
+
+    /* Les largeurs des images sont ajustées par le JS (voir layoutImages) */
+
+    .dot {
+        width: clamp(56px, 16vw, 120px);
+        height: clamp(56px, 16vw, 120px);
+    }
+
+    /* Écran d'entrée */
+    #btn-entrer {
+        width: clamp(110px, 34vw, 150px);
+        height: clamp(110px, 34vw, 150px);
+        padding: 0;
+        font-size: 1rem;
+    }
+}
